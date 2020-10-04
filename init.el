@@ -15,26 +15,26 @@
   (exec-path-from-shell-initialize))
 
 ;; company
-(add-hook 'after-init-hook 'global-company-mode)
+(add-hook 'after-init-hook #'global-company-mode)
 
 ;; flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; lsp
 (require 'lsp-mode)
-(add-hook 'elm-mode-hook 'lsp)
+(add-hook 'elm-mode-hook #'lsp)
 
 ;; elm
 (require 'elm-mode)
 (add-to-list 'auto-mode-alist '("\\.elm\\'" . elm-mode))
-(setq lsp-elm-elm-language-server-path "/home/larlon/.nvm/versions/node/v12.18.4/bin/elm-language-server")
+(setq lsp-elm-elm-language-server-path "~/.nvm/versions/node/v12.18.4/bin/elm-language-server")
 (add-hook 'elm-mode-hook 'elm-format-on-save-mode)
 
 ;; ivy
 (ivy-mode 1)
-(global-set-key (kbd "C-s") 'swiper)
-(global-set-key (kbd "M-x") 'counsel-M-x)
-(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "C-s") #'swiper)
+(global-set-key (kbd "M-x") #'counsel-M-x)
+(global-set-key (kbd "C-x C-f") #'counsel-find-file)
 
 
 (custom-set-variables
