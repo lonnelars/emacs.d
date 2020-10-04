@@ -36,6 +36,10 @@
 (global-set-key (kbd "M-x") #'counsel-M-x)
 (global-set-key (kbd "C-x C-f") #'counsel-find-file)
 
+;; projectile
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "C-c p") #'projectile-command-map)
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -44,7 +48,7 @@
  ;; If there is more than one, they won't work right.
  '(elm-format-on-save t)
  '(package-selected-packages
-   '(flycheck company exec-path-from-shell web-mode prettier paredit magit lsp-mode haskell-mode elm-mode counsel cider)))
+   '(projectile flycheck company exec-path-from-shell web-mode prettier paredit magit lsp-mode haskell-mode elm-mode counsel cider)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
