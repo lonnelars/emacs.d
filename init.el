@@ -7,6 +7,7 @@
 
 (tool-bar-mode -1)
 (menu-bar-mode -1)
+(show-paren-mode 1)
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
 
@@ -22,13 +23,18 @@
 
 ;; lsp
 (require 'lsp-mode)
-(add-hook 'elm-mode-hook #'lsp)
+(define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
 
 ;; elm
 (require 'elm-mode)
+(add-hook 'elm-mode-hook #'lsp)
 (add-to-list 'auto-mode-alist '("\\.elm\\'" . elm-mode))
 (setq lsp-elm-elm-language-server-path "~/.nvm/versions/node/v12.18.4/bin/elm-language-server")
-(add-hook 'elm-mode-hook 'elm-format-on-save-mode)
+(add-hook 'elm-mode-hook #'elm-format-on-save-mode)
+
+;; java
+(require 'lsp-java)
+(add-hook 'java-mode-hook #'lsp)
 
 ;; ivy
 (ivy-mode 1)
@@ -40,6 +46,12 @@
 (projectile-mode +1)
 (define-key projectile-mode-map (kbd "C-c p") #'projectile-command-map)
 
+;; paredit
+(add-hook 'scheme-mode-hook #'paredit-mode)
+(add-hook 'emacs-lisp-mode-hook #'paredit-mode)
+
+;; clojure
+(add-hook 'clojure-mode-hook #'paredit-mode)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -48,7 +60,7 @@
  ;; If there is more than one, they won't work right.
  '(elm-format-on-save t)
  '(package-selected-packages
-   '(projectile flycheck company exec-path-from-shell web-mode prettier paredit magit lsp-mode haskell-mode elm-mode counsel cider)))
+   '(lsp-java projectile flycheck company exec-path-from-shell web-mode prettier paredit magit lsp-mode haskell-mode elm-mode counsel cider)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
